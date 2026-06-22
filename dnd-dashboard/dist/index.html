@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <input class="title" id="camp-title" placeholder="Kampagnentitel" />
+      <input class="subtitle" id="camp-subtitle" placeholder="Untertitel" />
+    </div>
+    <div class="header-spacer"></div>
+    <div class="header-tools">
+      <span class="conn"><span class="dot" id="conn-dot"></span><span id="conn-text">verbinde…</span></span>
+      <span class="muted" id="role-label">Mitspieler</span>
+      <button id="dm-btn">DM-Modus</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="panel recap-panel" data-section="recap" id="panel-recap" style="margin-bottom:16px">
+      <h2><span class="ttl">📘 Was bisher geschah</span><span class="panel-actions"></span></h2>
+      <div class="panel-body" id="p-recap"></div>
+    </section>
+
+    <div class="grid">
+      <!-- linke Spalte -->
+      <div class="col">
+        <section class="panel" data-section="resources">
+          <h2><span class="ttl">Wichtige Ressourcen</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-resources"></div>
+        </section>
+
+        <section class="panel" data-section="factions">
+          <h2><span class="ttl">Fraktionen &amp; Beziehungen</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-factions"></div>
+        </section>
+
+        <section class="panel" data-section="npcs">
+          <h2><span class="ttl">NPCs</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-npcs"></div>
+        </section>
+      </div>
+
+      <!-- mittlere Spalte -->
+      <div class="col">
+        <section class="panel" data-section="quests">
+          <h2><span class="ttl">Quests</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-quests"></div>
+        </section>
+
+        <section class="panel" data-section="tracker">
+          <h2><span class="ttl">Kampagnen-Tracker</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-tracker"></div>
+        </section>
+
+        <section class="panel" data-section="sessions">
+          <h2><span class="ttl">Sitzungsnotizen</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-sessions"></div>
+        </section>
+
+        <section class="panel dm-only" data-section="library" id="panel-library">
+          <h2><span class="ttl">Bibliothek</span> <span class="dm-badge">DM</span></h2>
+          <div class="panel-body" id="p-library"></div>
+        </section>
+
+      </div>
+
+      <!-- rechte Spalte -->
+      <div class="col">
+        <section class="panel" data-section="boss">
+          <h2><span class="ttl">Aktueller Feind / Boss</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-boss"></div>
+        </section>
+
+        <section class="panel" data-section="map">
+          <h2><span class="ttl">Karte</span><span class="panel-actions"></span></h2>
+          <div class="panel-body" id="p-map"></div>
+        </section>
+
+        <section class="panel dm-only" data-section="secrets" id="panel-secrets">
+          <h2><span class="ttl">Geheimnisse</span> <span class="dm-badge">DM</span></h2>
+          <div class="panel-body" id="p-secrets"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
