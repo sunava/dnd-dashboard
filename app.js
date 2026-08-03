@@ -561,8 +561,10 @@ function mdToHtml(src) {
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
   s = s.replace(/(?:^|\n)(- .*(?:\n- .*)*)/g, (m, blk) =>
     '\n<ul>' + blk.split('\n').map((l) => '<li>' + l.replace(/^- /, '') + '</li>').join('') + '</ul>');
+  s = s.replace(/(?:^|\n)(&gt; .*(?:\n&gt; .*)*)/g, (m, blk) =>
+    '\n<div class="narrator-box">' + blk.split('\n').map((l) => l.replace(/^&gt; ?/, '')).join('<br>') + '</div>');
   s = s.replace(/\n/g, '<br>');
-  s = s.replace(/(<\/(?:h2|h3|h4|ul|li)>)<br>/g, '$1');
+  s = s.replace(/(<\/(?:h2|h3|h4|ul|li|div)>)<br>/g, '$1');
   return s;
 }
 
