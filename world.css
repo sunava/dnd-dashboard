@@ -64,6 +64,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .world-map-error { position: absolute; top: 30%; padding: 25px; background: #261b2c; }
 .world-detail { position: absolute; z-index: 8; top: 122px; right: 45px; bottom: 50px; width: min(380px, calc(100% - 60px)); max-height: calc(100dvh - 320px); overflow-y: auto; background: #f0ece4; border: 1px solid #e4d9c9; border-radius: 12px; color: #342d3d; padding: 24px; box-shadow: 0 20px 60px #0006; }
 .world-detail-top { display: flex; justify-content: space-between; align-items: center; }
+.world-detail { scroll-margin-top: 90px; }
 .world-tag { display: inline-block; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; padding: 5px 8px; border: 1px solid #75608066; border-radius: 4px; color: #bfb0d0; }
 .world-detail .world-tag { color: #6f547d; }
 .world-detail button { color: #574063; background: transparent; border-color: #b9a8c1; }

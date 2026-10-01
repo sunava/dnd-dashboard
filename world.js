@@ -51,6 +51,7 @@
       transform();
     }
     renderDetails();
+    if (view !== 'map' && detail && window.innerWidth > 700) detail.scrollIntoView({ block: 'nearest' });
     root.querySelectorAll('[data-ref]').forEach(node => node.classList.toggle('is-selected', node.dataset.ref === ref));
     const url = new URL(location.href); url.hash = `entry=${encodeURIComponent(ref)}`; history.replaceState(null, '', url);
     detail.querySelector('.world-close')?.focus({ preventScroll: true });
