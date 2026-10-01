@@ -1,0 +1,6 @@
+{
+  "name": "dnd-campaign-atlas",
+  "private": true,
+  "scripts": { "start": "node dev-server.cjs", "test": "node tests/explorer.cjs" },
+  "devDependencies": { "playwright": "^1.58.0" }
+}

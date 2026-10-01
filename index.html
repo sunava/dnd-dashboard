@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>D&D Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="world.css" />
 </head>
 <body>
   <header>
@@ -20,7 +21,8 @@
     </div>
   </header>
 
-  <div class="wrap">
+  <div id="world-app"></div>
+  <div class="wrap" id="dashboard" hidden>
     <section class="panel recap-panel" data-section="recap" id="panel-recap" style="margin-bottom:16px">
       <h2><span class="ttl">📘 Was bisher geschah</span><span class="panel-actions"></span></h2>
       <div class="panel-body" id="p-recap"></div>
@@ -93,5 +95,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
+  <script src="world.js"></script>
 </body>
 </html>

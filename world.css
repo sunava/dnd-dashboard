@@ -1,0 +1,137 @@
+/* Atlas — quiet ink, warm paper, a violet accent. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap');
+:root { --bg: #101119; --bg2: #171820; --panel: #1a1b25; --panel2: #20212e; --ink: #e1e0e8; --ink-dim: #9595a8; --gold: #b8adf4; --gold-bright: #ded7ff; --line: #353442; --bronze: #706589; --radius: 10px; }
+[hidden] { display: none !important; }
+html, body { background: #101119; font-family: 'DM Sans', system-ui, sans-serif; }
+body > header { height: 76px; background: #171820; border-bottom: 1px solid #30303d; box-shadow: none; padding: 12px 28px; }
+.brand .title { font-family: 'DM Sans', sans-serif; font-size: 19px; color: #f0edf8; text-shadow: none; }
+.brand .subtitle { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 12px; }
+button, .btn { font-family: 'DM Sans', sans-serif; background: #242532; border-color: #3c3b4b; }
+input, textarea, select { font-family: 'DM Sans', sans-serif; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 2px solid #d1bdff; outline-offset: 3px; }
+#world-app { --muted: #a5a3b4; }
+#world-app button { text-align: left; }
+.world-nav { min-height: 66px; padding: 0 28px; display: flex; align-items: center; gap: 9px; border-bottom: 1px solid #32313e; background: #171820; }
+.world-wordmark { font-size: 17px; letter-spacing: .2em; font-weight: 700; margin-right: 50px; white-space: nowrap; }
+.world-wordmark > span { color: #bfacf8; font-size: 24px; }
+.world-wordmark small { display: block; font-size: 8px; letter-spacing: .17em; color: #a29aaf; margin: 2px 0 0 30px; }
+.world-nav > button { background: none; border-color: transparent; padding: 9px 14px; color: #aba7bb; }
+.world-nav > button.active { background: #302a43; color: #e6daff; border-color: #52446c; }
+.world-nav-end { margin-left: auto; font-size: 9px; letter-spacing: .16em; color: #aaa1bb; }
+.world-layout { display: grid; grid-template-columns: 268px minmax(0,1fr); min-height: calc(100dvh - 142px); }
+.world-library { border-right: 1px solid #32313e; background: #171820; display: flex; flex-direction: column; height: calc(100dvh - 142px); min-height: 530px; position: sticky; top: 76px; }
+.world-library-heading { padding: 26px 20px 18px; }
+.eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .19em; color: #a99dbc; }
+.world-library h2 { font-family: 'Libre Caslon Display', Georgia, serif; letter-spacing: 0; font-size: 34px; font-weight: 400; margin: 8px 0 21px; }
+.world-library input { width: 100%; background: #20212c; border: 1px solid #3c3b49; border-radius: 8px; padding: 11px; font-size: 12px; color: #e1e0e8; }
+.world-filters { padding: 0 12px 14px; border-bottom: 1px solid #30303e; }
+.world-filters button { display: block; width: 100%; padding: 8px 12px; border: 0; background: transparent; color: #b9b6c7; margin: 1px 0; }
+.world-filters button > span { display: flex; align-items: center; gap: 8px; }
+.world-filters small { margin-left: auto; font-size: 10px; color: #a59cb7; }
+.world-filters button.active { background: #302a43; color: #e1d3ff; }
+.world-result-count { padding: 18px 22px 10px; font-size: 9px; letter-spacing: .14em; color: #aaa1bb; }
+.world-results { overflow: auto; flex: 1; padding: 0 12px 16px; }
+.world-result { display: block; width: 100%; padding: 11px 9px; background: transparent; border: 1px solid transparent; margin: 3px 0; }
+.world-result > span { display: flex; gap: 12px; align-items: center; }
+.world-result i { color: #baa3e4; font-style: normal; font-size: 20px; }
+.world-result strong { display: block; font-weight: 500; font-size: 12px; line-height: 1.5; }
+.world-result small { display: block; color: #a49fb2; font-size: 10px; margin-top: 3px; }
+.world-result.is-selected { background: #302a43; border-color: #55446f; }
+.world-add { margin: 12px; padding: 10px 14px; color: #d4c1ef; border-style: dashed; }
+.world-main { min-width: 0; padding: 30px; position: relative; }
+.world-heading { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 26px; }
+.world-heading h1 { font-family: 'Libre Caslon Display', Georgia, serif; letter-spacing: -.025em; font-size: clamp(28px, 3.2vw, 48px); font-weight: 400; line-height: 1.15; margin: 9px 0 0; }
+.world-total { font-size: 10px; color: #aaa3b7; padding-bottom: 7px; white-space: nowrap; }
+.world-canvas { min-height: 540px; }
+.world-canvas.is-map { height: calc(100dvh - 310px); min-height: 540px; position: relative; border: 1px solid #57505d; border-radius: 14px; overflow: hidden; background: #24242a; box-shadow: 0 18px 60px #0003; }
+.world-viewport { width: 100%; height: 100%; position: relative; overflow: hidden; cursor: grab; touch-action: none; background: radial-gradient(ellipse at center, #626054 0%, #34332f 60%, #26262a 100%); }
+.world-viewport:active { cursor: grabbing; }
+.world-viewport.adding { cursor: crosshair; }
+.world-map-plane { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+.world-map-plane > img { width: 100%; height: 100%; display: block; user-select: none; pointer-events: none; filter: saturate(.78) contrast(1.04); }
+#world-app .world-pin { position: absolute; z-index: 2; transform: translate(-50%, -50%) scale(var(--pin-scale, 1)); transform-origin: center; border: 0; padding: 0; background: transparent; white-space: nowrap; color: #fff; }
+.world-pin > span { position: relative; display: flex; flex-direction: column; align-items: center; }
+.world-pin i { font-style: normal; display: grid; place-items: center; width: 32px; height: 32px; background: #2d213d; border: 2px solid #e4cdfb; border-radius: 50%; box-shadow: 0 2px 0 3px #261c3966, 0 4px 18px #0008; font-size: 20px; }
+.world-pin strong { position: absolute; top: 37px; font-size: 11px; font-weight: 500; padding: 5px 9px; border: 1px solid #7c6989; border-radius: 5px; background: #211b2beb; max-width: 220px; white-space: normal; min-width: 70px; text-align: center; }
+.world-pin:hover i, .world-pin.is-selected i { background: #ad8bd6; color: #161020; }
+.world-map-tools { position: absolute; bottom: 24px; left: 24px; display: flex; align-items: center; padding: 5px; gap: 3px; background: #1d1b26ed; border: 1px solid #6b5c75; border-radius: 10px; box-shadow: 0 3px 20px #0004; }
+.world-map-tools button { min-width: 36px; min-height: 36px; text-align: center !important; border: 0; background: transparent; font-size: 17px; }
+.world-map-tools .active { background: #57406c; }
+.world-zoom-level { min-width: 44px; text-align: center; font-size: 10px; }
+.world-compass { position: absolute; right: 26px; top: 26px; text-align: center; color: #f2e5ca; text-shadow: 0 2px 6px #000; font-size: 11px; }
+.world-compass span { display: block; font-size: 44px; line-height: 1.1; }
+.world-map-caption { position: absolute; bottom: 29px; right: 22px; padding: 7px 9px; border-radius: 5px; font-size: 9px; color: #dfd7c9; background: #26222abf; pointer-events: none; }
+.world-map-error { position: absolute; top: 30%; padding: 25px; background: #261b2c; }
+.world-detail { position: absolute; z-index: 8; top: 122px; right: 45px; bottom: 50px; width: min(380px, calc(100% - 60px)); max-height: calc(100dvh - 320px); overflow-y: auto; background: #f0ece4; border: 1px solid #e4d9c9; border-radius: 12px; color: #342d3d; padding: 24px; box-shadow: 0 20px 60px #0006; }
+.world-detail-top { display: flex; justify-content: space-between; align-items: center; }
+.world-tag { display: inline-block; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; padding: 5px 8px; border: 1px solid #75608066; border-radius: 4px; color: #bfb0d0; }
+.world-detail .world-tag { color: #6f547d; }
+.world-detail button { color: #574063; background: transparent; border-color: #b9a8c1; }
+.world-detail button:hover { color: #302136; border-color: #745a83; }
+.world-close { border: 0; font-size: 17px; }
+.world-detail-symbol { color: #907397; font-size: 38px; margin-top: 20px; }
+.world-detail h2 { font-family: 'Libre Caslon Display', Georgia, serif; font-size: 34px; font-weight: 400; letter-spacing: -.02em; line-height: 1.15; margin: 10px 0 16px; }
+.world-detail h3 { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; border-top: 1px solid #d4c9d7; padding-top: 22px; margin-top: 25px; }
+.world-detail-sub { font-size: 12px; color: #776c7c; }
+.world-portrait { max-width: 100%; max-height: 230px; border-radius: 8px; object-fit: cover; }
+.world-prose { line-height: 1.8; font-size: 13px; overflow-wrap: anywhere; }
+.world-prose p { margin: 0 0 11px; white-space: pre-wrap; }
+.world-prose blockquote { border-left: 2px solid #a58daf; margin: 10px 0; padding-left: 15px; font-style: italic; }
+#world-app .world-inline-link { font: inherit; display: inline; padding: 0; border: 0; border-radius: 0; color: #78518b; border-bottom: 1px dotted #9b7bac; }
+.world-hint { color: #8f8498; font-size: 12px; line-height: 1.6; }
+.world-detail .world-hint { color: #796e7e; }
+.world-relation { display: flex; gap: 4px; margin: 8px 0; }
+.world-relation > button:first-child { flex: 1; padding: 10px; }
+.world-relation small { display: block; font-size: 10px; margin-bottom: 5px; }
+.world-relation strong { font-size: 12px; }
+.world-mention { display: block; width: 100%; border: 0; padding: 9px 0; font-size: 12px; }
+.world-edit { margin-top: 22px; width: 100%; padding: 12px; }
+.world-detail .world-add { margin: 10px 0; width: 100%; }
+.world-wiki { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 18px; align-content: start; }
+#world-app .world-card { padding: 25px; background: linear-gradient(145deg,#23232e,#1a1a24); border-color: #3d3749; min-height: 245px; }
+.world-card:hover { border-color: #8a6baa !important; }
+.world-card-icon { display: block; font-size: 32px; color: #bb9ddd; margin-bottom: 18px; }
+.world-card h2 { font-family: 'Libre Caslon Display', Georgia, serif; font-size: 28px; font-weight: 400; letter-spacing: 0; margin: 15px 0 10px; }
+.world-card p { color: #a7a1b3; font-size: 12px; line-height: 1.7; }
+.world-card-link { display: block; margin-top: 25px; color: #ccb3ed; font-size: 11px; }
+.world-empty { font-size: 12px; line-height: 1.7; padding: 10px; color: #a8a0b8; }
+.world-empty-state { padding: 70px 30px; text-align: center; max-width: 600px; margin: auto; }
+.world-empty-state > span { color: #b697d6; font-size: 65px; }
+.world-empty-state h2 { font-family: 'Libre Caslon Display', Georgia, serif; font-size: 36px; font-weight: 400; letter-spacing: 0; }
+.world-empty-state p, .world-connection-intro { color: #aea3bb; line-height: 1.8; font-size: 13px; }
+.world-edge { display: grid; grid-template-columns: 1fr 150px 1fr; gap: 20px; align-items: center; padding: 22px; border: 1px solid #3e354b; border-radius: 10px; margin-top: 15px; background: #1c1b25; }
+.world-edge > button { padding: 20px; background: #30253c; }
+.world-edge > span { text-align: center; font-size: 11px; color: #b9a9c7; }
+.world-edge i { display: block; font-style: normal; font-size: 24px; }
+.world-dialog { width: min(520px, calc(100% - 30px)); max-height: 90dvh; overflow: auto; border: 1px solid #675277; border-radius: 14px; padding: 28px; background: #211e2b; color: #e4dcef; }
+.world-dialog::backdrop { background: #09070fc9; backdrop-filter: blur(5px); }
+.world-dialog h2 { font-family: 'Libre Caslon Display', Georgia, serif; letter-spacing: 0; font-size: 32px; margin: 0 0 15px; }
+.world-dialog label { display: block; margin: 18px 0; font-size: 12px; }
+.world-dialog label > span { display: block; margin-bottom: 8px; color: #c7b7d3; }
+.world-dialog input, .world-dialog textarea, .world-dialog select { width: 100%; background: #16131e; border: 1px solid #5c4d6a; color: #eee5f5; padding: 11px; border-radius: 6px; }
+.world-form-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 25px; }
+.world-form-actions button[type=submit] { background: #705089; color: white; }
+.world-form-actions button:disabled { opacity: .5; cursor: wait; }
+.panel { background: #1e1d29; border-color: #3c354a; box-shadow: none; }
+.panel h2 { font-family: 'DM Sans', sans-serif; }
+@media (min-width: 1500px) { .has-detail .world-main { padding-right: 435px; } .world-detail { right: 30px; width: 380px; } .world-heading { min-height: 65px; } }
+@media (max-width: 1050px) { .world-wordmark { margin-right: 15px; } .world-nav-end { display: none; } .world-layout { grid-template-columns: 220px minmax(0,1fr); } .world-main { padding: 22px; } .world-total { display: none; } .world-map-caption { display: none; } .world-detail { top: 114px; right: 32px; bottom: 35px; max-height: calc(100dvh - 300px); } }
+@media (max-width: 700px) {
+  body > header { height: auto; min-height: 70px; padding: 12px 16px; gap: 6px; }
+  .brand .title { font-size: 15px; } .brand .subtitle { font-size: 10px; }
+  .header-tools { gap: 5px; } .header-tools .conn, #role-label { display: none; } #dm-btn { font-size: 11px; }
+  .world-nav { padding: 10px 12px; gap: 3px; flex-wrap: wrap; }
+  .world-wordmark { width: 100%; margin: 0 0 8px; font-size: 14px; } .world-wordmark small { display: inline; margin-left: 10px; font-size: 8px; }
+  .world-nav > button { padding: 8px; font-size: 11px; }
+  .world-layout { display: flex; flex-direction: column; }
+  .world-library { position: static; height: auto; min-height: 0; border-right: 0; }
+  .world-library-heading { padding: 16px; } .world-library-heading h2, .world-library-heading .eyebrow { display: none; }
+  .world-filters { display: flex; overflow-x: auto; gap: 3px; padding: 0 12px 12px; } .world-filters button { width: auto; white-space: nowrap; } .world-filters small { display: none; }
+  .world-result-count { padding: 10px 18px 0; } .world-results { display: flex; overflow-x: auto; padding: 8px 12px; max-height: 92px; flex: none; } .world-result { flex: 0 0 180px; }
+  .world-library > .world-add { margin: 6px 16px 12px; }
+  .world-main { padding: 20px 14px; } .world-heading { margin-bottom: 20px; } .world-heading h1 { font-size: 31px; }
+  .world-canvas.is-map { min-height: 430px; height: 60dvh; } .world-map-tools { left: 12px; bottom: 12px; }
+  .world-detail { position: fixed; top: auto; bottom: 0; left: 0; right: 0; width: 100%; max-height: 72dvh; border-radius: 18px 18px 0 0; padding-bottom: 35px; z-index: 60; }
+  .world-edge { grid-template-columns: 1fr; gap: 10px; padding: 16px; } .world-edge i { display: inline; margin-left: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
