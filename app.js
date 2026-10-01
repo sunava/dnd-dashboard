@@ -161,6 +161,7 @@ function renderAll() {
   renderBoss();
   renderSecrets();
   renderLibrary();
+  window.worldExplorer?.render();
 }
 
 function addRow(section, placeholder, onAdd) {
@@ -873,6 +874,7 @@ function applyKv(payload) {
   state[key] = row.data;
 }
 function applyDm(payload) {
+  if (role !== 'dm') return;
   const row = payload.new && payload.new.key ? payload.new : payload.old;
   if (!row || !row.key) return;
   if (row.key === 'bossDm') state.boss = { ...(state.boss || {}), dmNotes: (row.data && row.data.dmNotes) || '' };
@@ -904,7 +906,17 @@ function subscribeRealtime() {
   }
 }
 function removeChannels() { channels.forEach((c) => sb.removeChannel(c)); channels.length = 0; }
-async function refresh() { removeChannels(); await loadState(); subscribeRealtime(); }
+async function refresh() {
+  removeChannels();
+  if (role !== 'dm') {
+    pendingPayloads = pendingPayloads.filter(([which]) => which !== 'dm');
+    delete state.library; delete state.secrets;
+    if (state.boss) delete state.boss.dmNotes;
+    $('p-library').replaceChildren(); $('p-secrets').replaceChildren();
+    renderAll();
+  }
+  await loadState(); subscribeRealtime();
+}
 
 document.addEventListener('focusin', (e) => { if (e.target.matches('input,textarea,select')) editing = true; });
 document.addEventListener('focusout', () => {
